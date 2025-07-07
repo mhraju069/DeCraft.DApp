@@ -1,0 +1,261 @@
+    
+        :root {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .login-page {
+            background-color: var(--primary);
+            color: var(--secondary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--primary);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-header {
+            padding: 32px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--light-gray) 100%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background-color: #000000;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: var(--dark-gray);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .wallet-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 32px 24px;
+        }
+
+        .wallet-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--primary);
+            color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wallet-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .wallet-btn i {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .wallet-btn.metamask {
+            background: linear-gradient(90deg, rgba(247, 147, 26, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            border-color: rgba(247, 147, 26, 0.3);
+        }
+
+        .wallet-btn.walletconnect {
+            background: linear-gradient(90deg, rgba(64, 153, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            border-color: rgba(64, 153, 255, 0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            padding:  5px 0;
+            color: var(--dark-gray);
+            opacity: 0.5;
+            font-size: 12px;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .divider::before {
+            margin-right: 16px;
+        }
+
+        .divider::after {
+            margin-left: 16px;
+        }
+
+        .login-form {
+            padding: 0 32px 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--primary);
+            color: var(--secondary);
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(78, 68, 206, 0.2);
+        }
+
+        .role-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .role-option {
+            position: relative;
+        }
+        .role-not-selected{
+            border: 1px solid rgba(255, 7, 7, 0.795);
+            border-radius: 10px;
+        }
+
+        .role-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .role-option .role-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .role-option .role-card i {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .role-option .role-card h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .role-option .role-card p {
+            font-size: 12px;
+            color: var(--dark-gray);
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        .role-option input:checked + .role-card {
+            border-color: var(--accent);
+            background: rgba(78, 68, 206, 0.05);
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 16px;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-text {
+            text-align: center;
+            padding: 0 32px 32px;
+            font-size: 12px;
+            color: var(--dark-gray);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                border-radius: 12px;
+            }
+            
+            .login-header, .wallet-buttons, .login-form {
+                padding: 24px;
+            }
+            
+            .role-selection {
+                grid-template-columns: 1fr;
+            }
+        }

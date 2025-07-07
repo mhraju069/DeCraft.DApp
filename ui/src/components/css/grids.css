@@ -1,0 +1,36 @@
+:root {
+    --grid-color: #ffffff2a;
+}
+
+.skewed-grid {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 7px;
+    padding: 50px;
+    max-width: 120%;
+    margin: 0 auto;
+    scale: 1.1;
+    opacity: 0.5;
+    z-index: 1;
+    /* margin-top: 110px; */
+    top: 25px;
+    left: 0;
+
+}
+
+.grid-cell {
+    width: 100%;
+    padding-top: 130%;
+    /* Maintain aspect ratio */
+    background: var(--grid-color);
+    border-radius: 20px;
+    transform: skewX(-20deg);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.050) inset;
+    transition: background 0.3s ease;
+}
+
+.grid-cell:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+

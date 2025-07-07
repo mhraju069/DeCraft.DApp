@@ -3,75 +3,22 @@ import { BrowserProvider } from 'ethers';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../css/login.css';
-import Alert from '../hooks/Alert';
 import Grids from '../hooks/grids';
-import { useWallet } from '../hooks/connect';
+
 
 
 
 const Login = () => {
-    const { Connect, wallet, addrs, isNewUser } = useWallet();
-
-    const navigate = useNavigate();
-    const location = useLocation();
 
     const [error, setError] = useState(false);
     const [role, setRole] = useState('');
-    const [access, setAccess] = useState(false);
-    // const [wallet, setWallet] = useState(false);
-    // const [addrs, setAddrs] = useState('');
-    // const [isNewUser, setIsNewUser] = useState();
+    const [wallet, setWallet] = useState(false);
+    const [isNewUser, setIsNewUser] = useState();
 
     const [profileData, setProfileData] = useState({
         name: '',
         email: ''
     });
-
-    const handleProfileSubmit = async (e) => {
-        e.preventDefault();
-        console.log('handle submit clickeed')
-        if (!role) {
-            setError(true);
-            return;
-        }
-
-
-        try {
-            const updateRes = await axios.post(
-                "http://localhost:8000/api/update-user/", { wallet: wallet, name: profileData.name, email: profileData.email, role: role })
-            Alert("Sign Up Successful", "success")
-            navigate('/dashboard');
-        } catch (error) {
-            console.log(error)
-        }
-
-    };
-
-    useEffect(() => {
-        const redirectIfAuthenticated = async () => {
-            const token = localStorage.getItem('token');
-            if (token && location.pathname === '/login') {  // Only redirect if on login page
-                try {
-                    const res = await axios.get('http://localhost:8000/api/check-authentication/', {
-                        headers: { Authorization: `Bearer ${token}` },
-                    });
-                    if (res.status === 200) {
-                        console.log("Token is valid");
-                        // Navigate and pass location state
-                        Alert("Login Successful", "success")
-                        navigate('/dashboard', { state: {  loginSuccess: true } });
-                    }
-                } catch (err) {
-                    console.log("Token invalid or expired");
-                    localStorage.removeItem('token');
-                    navigate('/login');
-                }
-            }
-        };
-
-        redirectIfAuthenticated();
-    }, [location.pathname]);
-
 
 
     return (
@@ -84,7 +31,7 @@ const Login = () => {
                 </div>
 
                 {!wallet && <div className="wallet-buttons">
-                    <button className="wallet-btn metamask" onClick={Connect}>
+                    <button className="wallet-btn metamask" >
                         <i className="fab fa-ethereum"></i>
                         Connect MetaMask
                     </button>
@@ -99,7 +46,7 @@ const Login = () => {
 
 
                 {isNewUser && (
-                    <form className="login-form" onSubmit={handleProfileSubmit}>
+                    <form className="login-form">
                         <div className="form-group">
                             <label htmlFor="name">Full Name</label>
                             <input

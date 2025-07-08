@@ -5,4 +5,6 @@ urlpatterns = [
     path('nonce/', NonceView.as_view(), name='nonce'),
     path('update-user/', UpdateUser.as_view(), name='update-user'),
     path('verify-signature/', VerifySignature.as_view(), name='verify-signature'),
+    path('check-authentication/', CheckAuthentication.as_view(), name='check-authentication'),
+
 ]

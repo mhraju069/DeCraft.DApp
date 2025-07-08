@@ -69,3 +69,9 @@ class UpdateUser(APIView):
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         
         return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
+
+class CheckAuthentication(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        return Response({"message": "User is authenticated"}, status=status.HTTP_200_OK)

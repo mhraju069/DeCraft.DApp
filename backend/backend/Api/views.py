@@ -52,3 +52,20 @@ class VerifySignature(APIView):
         
         return Response({"error": "Invalid signature"}, status=status.HTTP_400_BAD_REQUEST)
     
+class UpdateUser(APIView):
+    
+    def post(self, request):
+        wallet = request.data.get("wallet")
+        if not wallet:
+            raise ValidationError("Wallet address is required")
+        
+        try:
+            user = User.objects.get(wallet=wallet.lower())
+            user.name = request.data.get("name", user.name)
+            user.email = request.data.get("email", user.email)
+            user.role = request.data.get("role", user.role)
+            user.save()
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)

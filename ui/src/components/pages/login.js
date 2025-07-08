@@ -43,30 +43,30 @@ const Login = () => {
 
     };
 
-    // useEffect(() => {
-    //     const redirectIfAuthenticated = async () => {
-    //         const token = localStorage.getItem('token');
-    //         if (token && location.pathname === '/login') {  // Only redirect if on login page
-    //             try {
-    //                 const res = await axios.get('http://localhost:8000/api/check-authentication/', {
-    //                     headers: { Authorization: `Bearer ${token}` },
-    //                 });
-    //                 if (res.status === 200) {
-    //                     console.log("Token is valid");
-    //                     // Navigate and pass location state
-    //                     Alert("Login Successful", "success")
-    //                     navigate('/dashboard', { state: {  loginSuccess: true } });
-    //                 }
-    //             } catch (err) {
-    //                 console.log("Token invalid or expired");
-    //                 localStorage.removeItem('token');
-    //                 navigate('/login');
-    //             }
-    //         }
-    //     };
+    useEffect(() => {
+        const redirectIfAuthenticated = async () => {
+            const token = localStorage.getItem('token');
+            if (token && location.pathname === '/login') {  // Only redirect if on login page
+                try {
+                    const res = await axios.get('http://localhost:8000/api/check-authentication/', {
+                        headers: { Authorization: `Bearer ${token}` },
+                    });
+                    if (res.status === 200) {
+                        console.log("Token is valid");
+                        // Navigate and pass location state
+                        Alert("Login Successful", "success")
+                        navigate('/dashboard', { state: {  loginSuccess: true } });
+                    }
+                } catch (err) {
+                    console.log("Token invalid or expired");
+                    localStorage.removeItem('token');
+                    navigate('/login');
+                }
+            }
+        };
 
-    //     redirectIfAuthenticated();
-    // }, [location.pathname]);
+        redirectIfAuthenticated();
+    }, [location.pathname]);
 
 
 
